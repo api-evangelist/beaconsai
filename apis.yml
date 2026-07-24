@@ -1,7 +1,30 @@
 aid: beaconsai
 name: Beacons.ai
-description: Beacons.ai is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Beacons.ai is an all-in-one creator business platform for creators, talent
+  managers, and brands. It combines link-in-bio pages, creator websites, media
+  kits, digital storefronts, email marketing, affiliate monetization, analytics,
+  and creator-brand collaboration tools into one integrated product. Beacons
+  helps creators build an owned web presence, grow and own their audience,
+  monetize through products, affiliate links, and sponsorships, and manage
+  creator-business workflows from a single place, with dedicated tooling for
+  talent managers and brands running creator partnerships. Beacons.ai was
+  surfaced as a portfolio company of a16z and profiled in the API Evangelist
+  network. As of this enrichment pass, Beacons publishes no public developer
+  API, OpenAPI, or developer portal; this profile captures its public web,
+  product, and identity surface.
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://beacons.ai/_framerusercontent/assets/xYEVVu9ePuRZMJOTTdnZi0MEUEM.png
 url: https://raw.githubusercontent.com/api-evangelist/beaconsai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +34,55 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
+- Creator Economy
+- Link in Bio
+- Creator Website Builder
+- Creator Storefront
+- Media Kit
+- Email Marketing
+- Affiliate Marketing
+- Creator Monetization
+- Influencer Software
 apis: []
+common:
+- type: DomainSecurity
+  url: security/beaconsai-domain-security.yml
+- type: Website
+  url: https://beacons.ai
+- type: Pricing
+  url: https://beacons.ai/i/pricing
+- type: HelpCenter
+  url: https://help.beacons.ai/en
+- type: Support
+  url: https://help.beacons.ai/en
+- type: Blog
+  url: https://beacons.ai/i/blog
+- type: TermsOfService
+  url: https://beacons.ai/i/terms
+- type: PrivacyPolicy
+  url: https://beacons.ai/i/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/BeaconsAI
+- type: LinkInBio
+  url: https://beacons.ai/i/app-pages/link-in-bio
+- type: Store
+  url: https://beacons.ai/i/app-pages/store
+- type: EmailMarketing
+  url: https://beacons.ai/i/app-pages/email-marketing
+- type: MediaKit
+  url: https://beacons.ai/i/app-pages/media-kit
+- type: LLMsTxt
+  url: llms/beaconsai-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
