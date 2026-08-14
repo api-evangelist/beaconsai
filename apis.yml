@@ -10,31 +10,36 @@ description: >-
   creator-business workflows from a single place, with dedicated tooling for
   talent managers and brands running creator partnerships. Beacons.ai was
   surfaced as a portfolio company of a16z and profiled in the API Evangelist
-  network. As of this enrichment pass, Beacons publishes no public developer
-  API, OpenAPI, or developer portal; this profile captures its public web,
-  product, and identity surface.
+  network. Beacons publishes no developer portal, no API reference and no
+  OpenAPI, but it does operate a live, OAuth-protected Model Context Protocol
+  server for creator data at https://beacons.ai/api/v001/creator/mcp, discoverable
+  only through the RFC 8414 and RFC 9728 documents it serves at /.well-known/ —
+  an agent surface that exists without any human-facing documentation.
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: freemium
+  onboarding: self-serve
   trial: false
   try_now: false
-  public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  public: true
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - https://beacons.ai/i/pricing
+  - https://account.beacons.ai/signup
+  generated: '2026-08-13'
+  method: searched
 image: https://beacons.ai/_framerusercontent/assets/xYEVVu9ePuRZMJOTTdnZi0MEUEM.png
 url: https://raw.githubusercontent.com/api-evangelist/beaconsai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: hosted-mcp-server-discovered
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-13'
 tags:
 - Company
 - Creator Economy
@@ -46,7 +51,45 @@ tags:
 - Affiliate Marketing
 - Creator Monetization
 - Influencer Software
-apis: []
+- MCP
+- Agent Native
+apis:
+- name: Beacons Creator MCP Server
+  description: >-
+    A live, first-party Model Context Protocol server exposing a Beacons creator's
+    own data to an agent. Discovered through the RFC 9728 Protected Resource
+    Metadata document Beacons serves at
+    https://beacons.ai/.well-known/oauth-protected-resource, which names this exact
+    resource. Protected by an OAuth 2.1 authorization code + PKCE (S256) flow with
+    open dynamic client registration and a single advertised scope, mcp:read, so
+    the published surface is read-only. tools/list returns 401 with a
+    WWW-Authenticate bearer challenge, meaning the tool manifest and every
+    inputSchema require an authenticated creator; Beacons publishes no
+    documentation, no llms.txt tool list and no help-centre article for this
+    server, so no tool names are recorded.
+  humanURL: https://beacons.ai
+  baseURL: https://beacons.ai/api/v001/creator/mcp
+  tags:
+  - mcp
+  - agent-native
+  - creator-economy
+  - link-in-bio
+  - oauth
+  properties:
+  - type: MCPServer
+    url: mcp/beaconsai-mcp.yml
+  - type: MCPServer
+    url: https://beacons.ai/api/v001/creator/mcp
+  - type: Authentication
+    url: authentication/beaconsai-authentication.yml
+  - type: OAuthScopes
+    url: scopes/beaconsai-scopes.yml
+  - type: ErrorCatalog
+    url: errors/beaconsai-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/beaconsai-rate-limits.yml
+  - type: Conventions
+    url: conventions/beaconsai-conventions.yml
 common:
 - type: DomainSecurity
   url: security/beaconsai-domain-security.yml
@@ -54,6 +97,8 @@ common:
   url: https://beacons.ai
 - type: Pricing
   url: https://beacons.ai/i/pricing
+- type: Plans
+  url: plans/beaconsai-plans-pricing.yml
 - type: HelpCenter
   url: https://help.beacons.ai/en
 - type: Support
@@ -61,11 +106,25 @@ common:
 - type: Blog
   url: https://beacons.ai/i/blog
 - type: TermsOfService
-  url: https://beacons.ai/i/terms
+  url: https://beacons.ai/i/terms-and-conditions
 - type: PrivacyPolicy
-  url: https://beacons.ai/i/privacy-policy
+  url: https://beacons.ai/i/beacons-privacy-policy
+- type: SignUp
+  url: https://account.beacons.ai/signup
 - type: GitHubOrganization
   url: https://github.com/BeaconsAI
+- type: StatusPage
+  url: https://status.beacons.ai
+- type: Lifecycle
+  url: lifecycle/beaconsai-lifecycle.yml
+- type: ChangeLog
+  url: https://beacons.ai/i/whats-new
+- type: ChangeLog
+  url: changelog/beaconsai-changelog.yml
+- type: WellKnown
+  url: well-known/beaconsai-well-known.yml
+- type: Conformance
+  url: conformance/beaconsai-conformance.yml
 - type: LinkInBio
   url: https://beacons.ai/i/app-pages/link-in-bio
 - type: Store
@@ -82,7 +141,13 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 15
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Overturns the prior pass. Beacons DOES ship an agent surface — a live
+    OAuth-protected MCP server at https://beacons.ai/api/v001/creator/mcp, found
+    via /.well-known/oauth-protected-resource, with zero human documentation
+    anywhere on the site. Tools are auth-gated. No OpenAPI, no GraphQL, no agent
+    card, no SDKs.
