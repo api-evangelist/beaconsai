@@ -1,0 +1,54 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://status.beacons.ai (200), https://beacons.ai/i/whats-new (200), and live
+  probes of the /api/v001/ surface
+versioning:
+  scheme: path segment
+  current: v001
+  evidence: >-
+    Every API path Beacons exposes is prefixed https://beacons.ai/api/v001/ —
+    observed on the OAuth authorize/token/register endpoints named in the RFC 8414
+    metadata and on the MCP resource named in the RFC 9728 metadata.
+  policy_published: false
+  policy_note: >-
+    Beacons publishes no versioning policy. The v001 prefix is the only version
+    signal, and there is no statement of what a version bump would mean or how
+    long v001 is supported.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  evidence: >-
+    No Sunset or Deprecation response header was observed on any Beacons endpoint,
+    and no deprecation or end-of-life policy page exists on beacons.ai or
+    help.beacons.ai.
+  deprecated_operations: []
+  deprecated_operations_note: No OpenAPI is published, so no operation-level
+    deprecation can be derived.
+status_page:
+  published: true
+  url: https://status.beacons.ai
+  vendor: Zoho Site24x7 StatusIQ
+  http_status: 200
+  evidence: >-
+    https://status.beacons.ai returns 200 and serves a Site24x7 StatusIQ status
+    page whose meta description reads "Welcome to Beacons Status! View active
+    incident progress, historical component status, and subscribe to email and RSS
+    notifications for components and incidents on the move."
+  machine_readable: false
+  machine_readable_note: >-
+    StatusIQ, not Atlassian Statuspage — https://status.beacons.ai/api/v2/summary.json
+    returns 404, and the page body is client-side rendered, so an agent cannot read
+    current component status without a browser.
+  mirror: https://beaconsai.statuspage.io (200)
+sla:
+  published: false
+  note: No uptime or support SLA is published on the pricing page, the terms, or
+    the status page.
+support:
+  help_center: https://help.beacons.ai/en
+  email: support@beacons.ai
+  note: Contact address published on the help centre. Creator Max is the only tier
+    advertising "prioritized support"; no response-time commitment is stated.
+changelog: changelog/beaconsai-changelog.yml

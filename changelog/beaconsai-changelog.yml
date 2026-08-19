@@ -1,0 +1,43 @@
+generated: '2026-08-13'
+method: searched
+source: https://beacons.ai/i/whats-new
+name: Beacons What's New
+url: https://beacons.ai/i/whats-new
+scheme: dated product release notes (no version numbers, no API versioning notes)
+audience: end users / creators
+api_changelog: false
+api_changelog_note: >-
+  This is a product changelog for the creator application, not an API changelog.
+  Beacons publishes no changelog for its `/api/v001/` surface or for the Creator
+  MCP server, so there is no record of when tools, scopes or the endpoint changed.
+current_version: null
+current_version_note: >-
+  The only version signal Beacons emits anywhere is the `v001` path segment on
+  https://beacons.ai/api/v001/... — it is not accompanied by a version policy or a
+  release history.
+entry_count_captured: 10
+entries:
+- date: '2026-08-12'
+  title: Send Link in Bio signups straight to Flodesk
+- date: '2026-08-12'
+  title: Build hype for your next drop with the countdown timer block
+- date: '2026-08-12'
+  title: Share discount codes fans can copy in one tap
+- date: '2026-08-12'
+  title: Reorganize your Link in Bio without losing your click data
+- date: '2026-08-10'
+  title: 'Smart Reply, upgraded: send fans anywhere and see every click'
+- date: '2026-07-10'
+  title: Discover your best rates for brand deals with the Pricing Calculator
+- date: '2026-07-02'
+  title: Media kit editing, rebuilt to be faster
+- date: '2026-06-26'
+  title: Set up your media kit to land more brand deals
+- date: '2026-06-12'
+  title: Connect your Instagram to Beacons in seconds
+- date: '2026-06-05'
+  title: 'Creator CRM filters: find any creator fast'
+breaking_changes_flagged: false
+breaking_changes_note: >-
+  Entries are feature announcements; none is labelled breaking, deprecated or
+  removed, and the page carries no breaking-change convention.

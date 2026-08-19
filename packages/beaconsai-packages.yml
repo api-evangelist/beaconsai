@@ -1,0 +1,39 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  npm registry search, pypi.org, and the github.com/BeaconsAI organization via the
+  GitHub API, 2026-08-13
+package_count: 0
+packages: []
+note: >-
+  Beacons.ai ships NO first-party client library in any public registry. This is a
+  searched zero, not an unchecked one — no Packages or SDKs pointer is wired into
+  apis.yml, because none exists.
+registries_checked:
+- registry: npm
+  query: 'registry.npmjs.org/-/v1/search?text=beacons.ai'
+  result: zero results; a broader creator/link-in-bio query returned only unrelated
+    third-party packages
+- registry: pypi
+  queries: [beacons, beaconsai, beacons-ai]
+  result: >-
+    `beaconsai` and `beacons-ai` return 404. `beacons` (0.1.0) EXISTS but is NOT
+    Beacons.ai — its metadata names author "Asterio Gonzalez" and homepage
+    github.com/asterio/beacons. Explicitly excluded to prevent a wrong-owner
+    package being credited to this provider.
+- registry: github
+  org: https://github.com/BeaconsAI
+  result: >-
+    Two public repositories, both unrelated to the product and both dormant since
+    2019 — `machine-learning-blog-posts` (last push 2019-06-06) and `mui-datatables`
+    (a fork of a Material-UI datatable library, last push 2019-07-23). No SDK, no
+    CLI, no MCP client package, no spec repository.
+not_checked_reason: >-
+  Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist and crates.io were not
+  queried individually because Beacons publishes no developer documentation naming
+  any language binding and the GitHub organization contains no source for one — a
+  first-party package in those ecosystems would have no origin.
+mcp_client_note: >-
+  The Creator MCP server is REMOTE ONLY (https://beacons.ai/api/v001/creator/mcp).
+  There is no npx-installable stdio package, so there is nothing to version here.
+  See mcp/beaconsai-mcp.yml.

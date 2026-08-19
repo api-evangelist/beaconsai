@@ -1,0 +1,82 @@
+generated: '2026-08-13'
+method: searched
+source: https://beacons.ai/i/pricing
+currency: USD
+plan_count: 4
+api_access_note: >-
+  None of the four tiers mentions API access, developer access or the Creator MCP
+  server. The plans price the creator application; the hosted MCP endpoint at
+  https://beacons.ai/api/v001/creator/mcp is not named on the pricing page, so
+  which tier (if any) it requires is unpublished.
+plans:
+- name: Free
+  price_monthly: 0
+  price_annual: 0
+  currency: USD
+  included:
+    ai_credits: 30 daily AI credits
+    email_sends: 50 email sends per month
+    seller_fee: 9%
+    features:
+    - customizable link in bio
+    - unlimited digital products
+    - affiliate links
+- name: Creator
+  price_monthly: 10
+  price_annual: 100
+  price_annual_effective_monthly: 8.33
+  currency: USD
+  included:
+    ai_credits: 300 daily AI credits
+    email_sends: 500 email sends per month
+    seller_fee: 9%
+    features:
+    - everything in Free
+    - free custom domain
+    - advanced SEO features
+- name: Creator Plus
+  price_monthly: 30
+  price_annual: 300
+  price_annual_effective_monthly: 25
+  currency: USD
+  included:
+    ai_credits: unlimited daily AI credits
+    email_sends: unlimited
+    seller_fee: 0%
+    features:
+    - everything in Creator
+    - Buy Now Pay Later
+    - unlimited courses with video hosting
+    - 100% affiliate commissions
+- name: Creator Max
+  price_monthly: 90
+  price_annual: 900
+  price_annual_effective_monthly: 75
+  currency: USD
+  included:
+    ai_credits: unlimited daily AI credits
+    email_sends: unlimited
+    seller_fee: 0%
+    features:
+    - everything in Creator Plus
+    - Google Workspace
+    - white glove onboarding
+    - prioritized support
+    - NFC card
+    - VIP event access
+metering:
+  - dimension: AI credits
+    unit: credits per day
+    note: Daily allowance, reset daily; unlimited on Creator Plus and above.
+  - dimension: email sends
+    unit: sends per month
+    note: Monthly allowance; unlimited on Creator Plus and above.
+  - dimension: seller fee
+    unit: percent of transaction
+    note: 9% on Free and Creator, 0% on Creator Plus and Creator Max. This is the
+      real price of the lower tiers for a creator selling volume.
+overage:
+  published: false
+  note: The pricing page states allowances but not what happens when a creator
+    exceeds them.
+enterprise_tier: false

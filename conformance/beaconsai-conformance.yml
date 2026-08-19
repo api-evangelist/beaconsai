@@ -1,0 +1,94 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  live probes of https://beacons.ai/.well-known/* and
+  https://beacons.ai/api/v001/creator/mcp on 2026-08-13
+note: >-
+  Every assertion below is read from a document Beacons actually serves or from a
+  response header observed on a live request. Beacons makes no published
+  compliance or standards claim anywhere on its public site, so nothing here is
+  taken from marketing copy.
+standards:
+- id: rfc8414
+  name: OAuth 2.0 Authorization Server Metadata
+  conforms: true
+  evidence: >-
+    GET https://beacons.ai/.well-known/oauth-authorization-server returned 200
+    application/json with issuer, authorization_endpoint, token_endpoint,
+    registration_endpoint, response_types_supported and
+    code_challenge_methods_supported.
+- id: rfc9728
+  name: OAuth 2.0 Protected Resource Metadata
+  conforms: true
+  evidence: >-
+    GET https://beacons.ai/.well-known/oauth-protected-resource returned 200 with
+    resource, authorization_servers, scopes_supported and bearer_methods_supported;
+    the resource-scoped path
+    /.well-known/oauth-protected-resource/api/v001/creator/mcp also returns 200 and
+    is the exact URL named in the WWW-Authenticate challenge.
+- id: rfc6750
+  name: OAuth 2.0 Bearer Token Usage
+  conforms: true
+  evidence: >-
+    POST to the MCP endpoint without credentials returned 401 with
+    `WWW-Authenticate: Bearer resource_metadata="..."`.
+- id: rfc7636
+  name: PKCE for OAuth Public Clients
+  conforms: true
+  evidence: code_challenge_methods_supported = ["S256"] in the authorization server
+    metadata.
+- id: rfc7591
+  name: OAuth 2.0 Dynamic Client Registration
+  conforms: partial
+  evidence: >-
+    registration_endpoint https://beacons.ai/api/v001/oauth/register is advertised.
+    This pass did not exercise it (registering a client writes state on the
+    provider's side), so the endpoint's behaviour is asserted only as advertised,
+    not as observed.
+- id: oauth21
+  name: OAuth 2.1 (authorization code + PKCE only)
+  conforms: true
+  evidence: >-
+    grant_types_supported = ["authorization_code"] with mandatory S256 PKCE and no
+    implicit or password grant — the OAuth 2.1 shape.
+- id: mcp-authorization
+  name: MCP Authorization (protected resource metadata discovery)
+  conforms: true
+  evidence: >-
+    The MCP endpoint returns 401 with a resource_metadata pointer, which is the
+    discovery handshake the MCP authorization specification requires of a remote
+    server.
+- id: mcp-streamable-http
+  name: MCP Streamable HTTP transport
+  conforms: unknown
+  evidence: >-
+    The endpoint accepts POST with Accept "application/json, text/event-stream" but
+    rejects unauthenticated calls before negotiating a transport, so the transport
+    could not be confirmed.
+- id: rfc9116
+  name: security.txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on beacons.ai and on
+    account.beacons.ai.
+- id: openid-connect-discovery
+  name: OpenID Connect Discovery
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404.
+- id: rfc9457
+  name: Problem Details for HTTP APIs
+  conforms: false
+  evidence: >-
+    Error responses observed on /api/v001/* are text/plain (a bare
+    "Rate limit exceeded" body on 429, a zero-length body on 401), not
+    application/problem+json.
+- id: rfc8594
+  name: Sunset HTTP header / deprecation policy
+  conforms: false
+  evidence: No Sunset or Deprecation header observed; no deprecation policy is
+    published.
+- id: rfc9331-ratelimit-headers
+  name: RateLimit header fields for HTTP
+  conforms: false
+  evidence: >-
+    A 429 response from /api/v001/* carried no RateLimit-*, X-RateLimit-* or
+    Retry-After header — the client is told to back off with no signal of how long.

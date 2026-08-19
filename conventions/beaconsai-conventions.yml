@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  derived from live responses on https://beacons.ai/api/v001/* and from the OAuth
+  discovery documents at https://beacons.ai/.well-known/*
+scope_note: >-
+  Beacons publishes no API conventions, style guide or developer documentation.
+  Everything here is observed runtime behaviour on the one public surface that
+  exists (the OAuth-protected Creator MCP endpoint) plus its discovery documents.
+  Fields that could not be observed are recorded as unknown rather than guessed.
+authentication:
+  style: OAuth 2.1 bearer token in the Authorization header
+  discovery: RFC 9728 protected resource metadata, advertised via WWW-Authenticate
+    on 401
+  scopes: [mcp:read]
+  detail: authentication/beaconsai-authentication.yml
+versioning:
+  style: path segment
+  current: v001
+  header_negotiation: false
+  detail: lifecycle/beaconsai-lifecycle.yml
+idempotency:
+  supported: unknown
+  header: null
+  note: >-
+    No idempotency key header is documented and none could be observed — every
+    unauthenticated call is rejected before a request body is processed. NOT
+    asserted as supported.
+pagination:
+  style: unknown
+  note: No REST collection endpoint is reachable unauthenticated and no OpenAPI is
+    published, so no pagination convention could be observed.
+field_expansion:
+  supported: unknown
+metadata:
+  supported: unknown
+request_id_tracing:
+  header: x-cloud-trace-context
+  note: >-
+    Every response carries `x-cloud-trace-context` (Google Cloud Trace) and a
+    Cloudflare `cf-ray`. Neither is documented as a support-correlation ID, but
+    x-cloud-trace-context is the only per-request identifier the platform returns
+    and is the value to quote in a support ticket.
+error_envelope:
+  format: text/plain
+  rfc9457: false
+  note: >-
+    Errors are bare text bodies, not JSON and not application/problem+json — 429
+    returns the literal string "Rate limit exceeded", 401 returns a zero-length
+    body and carries its meaning entirely in the WWW-Authenticate header. An agent
+    must read status + headers, not the body.
+  detail: errors/beaconsai-problem-types.yml
+rate_limit_signaling:
+  headers: none
+  exhaustion_status: 429
+  retry_after: absent
+  detail: rate-limits/beaconsai-rate-limits.yml
+transport:
+  https_only: true
+  hsts: max-age=15552000; includeSubDomains; preload
+  http_version: HTTP/2
+  edge: Cloudflare in front of Google Cloud
+content_negotiation:
+  mcp_accept: application/json, text/event-stream
+  note: The MCP endpoint is a JSON-RPC 2.0 surface; the rest of /api/v001/ could
+    not be characterised.

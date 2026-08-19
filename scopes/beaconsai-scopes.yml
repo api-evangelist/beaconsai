@@ -1,0 +1,24 @@
+generated: '2026-08-13'
+method: probed
+source: https://beacons.ai/.well-known/oauth-authorization-server + https://beacons.ai/.well-known/oauth-protected-resource
+docs: null
+docs_note: >-
+  Beacons publishes no scopes/permissions reference page. Both discovery documents
+  independently advertise the same single scope, so the list below is complete as
+  published — but the meaning of the scope is undocumented and the description is
+  therefore limited to what the name and the protected resource state.
+issuer: https://beacons.ai
+resource: https://beacons.ai/api/v001/creator/mcp
+scope_count: 1
+scopes:
+- name: mcp:read
+  resource: https://beacons.ai/api/v001/creator/mcp
+  access: read
+  description: >-
+    Read access to the Beacons Creator MCP resource. Advertised by both
+    scopes_supported arrays; no scope description is published by the provider.
+  source: /.well-known/oauth-authorization-server, /.well-known/oauth-protected-resource
+observations:
+- No write scope is advertised, so the published agent surface is read-only.
+- Scope naming follows the MCP convention (`mcp:<action>`) rather than a
+  resource-per-scope model.

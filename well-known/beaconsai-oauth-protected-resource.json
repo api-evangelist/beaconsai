@@ -1,0 +1,12 @@
+{
+    "resource": "https://beacons.ai/api/v001/creator/mcp",
+    "authorization_servers": [
+        "https://beacons.ai"
+    ],
+    "scopes_supported": [
+        "mcp:read"
+    ],
+    "bearer_methods_supported": [
+        "header"
+    ]
+}

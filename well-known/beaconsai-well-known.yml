@@ -1,0 +1,84 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every Beacons.ai host known to this profile
+note: >-
+  Beacons.ai serves no security.txt, no OpenID Connect discovery document, no
+  api-catalog and no ai-plugin.json. It DOES serve RFC 8414 OAuth 2.0
+  Authorization Server Metadata and RFC 9728 OAuth 2.0 Protected Resource
+  Metadata, and those two documents are the only public, machine-readable
+  declaration of a Beacons developer surface that exists anywhere — they name a
+  hosted MCP server at https://beacons.ai/api/v001/creator/mcp. Beacons publishes
+  no developer portal, no API reference and no help-centre article describing
+  this endpoint; it was found by probing, not by documentation.
+hosts:
+- host: https://beacons.ai
+  canonical: true
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: beaconsai-oauth-authorization-server.json
+    spec: RFC 8414
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: beaconsai-oauth-protected-resource.json
+    spec: RFC 9728
+  - path: /.well-known/oauth-protected-resource/api/v001/creator/mcp
+    status: 200
+    content_type: application/json
+    file: beaconsai-oauth-protected-resource-creator-mcp.json
+    spec: RFC 9728 (resource-scoped path, as advertised by the WWW-Authenticate
+      challenge on the MCP endpoint)
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    file: ../llms/beaconsai-llms.txt
+  - path: /robots.txt
+    status: 200
+    note: 'body is a single line: "User-agent: *" with no directives — nothing is
+      disallowed and no sitemap is declared'
+- host: https://account.beacons.ai
+  canonical: false
+  note: >-
+    The signup/login host runs the same Next.js application and answers the OAuth
+    discovery paths with host-reflective copies (issuer echoes
+    https://account.beacons.ai). Treated as a mirror of the beacons.ai documents,
+    not a second authorization server.
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+    note: byte-identical to https://beacons.ai/llms.txt
+- host: https://help.beacons.ai
+  canonical: false
+  note: Intercom-hosted help centre; every /.well-known/* path returns the 404 HTML
+    shell.
+  documents:
+  - path: /llms.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404

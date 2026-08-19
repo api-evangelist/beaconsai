@@ -1,6 +1,6 @@
-generated: '2026-07-18'
+generated: '2026-08-13'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: live DNS/TLS/HTTP probes of apis.yml + MCP hosts
 hosts:
 - host: beacons.ai
   https: true
@@ -8,16 +8,32 @@ hosts:
   cert_expires: Oct  6 12:13:16 2026 GMT
   hsts: true
   hsts_max_age: 15552000
+  hsts_include_subdomains: true
+  hsts_preload: true
+  hsts_header: max-age=15552000; includeSubDomains; preload
+  hsts_note: >-
+    Observed directly on GET https://beacons.ai/ and https://beacons.ai/llms.txt on
+    2026-08-13. The automated probe reports null here because the root answers a
+    Cloudflare 403 bot challenge to non-browser user agents; the header is present
+    on that response and on every 200.
 domains:
 - domain: beacons.ai
   dnssec: false
   caa:
+  - 0 issue "certainly.com"
+  - 0 issue "comodoca.com"
   - 0 issue "digicert.com; cansignhttpexchanges=yes"
   - 0 issue "letsencrypt.org"
   - 0 issue "pki.goog; cansignhttpexchanges=yes"
   - 0 issue "ssl.com"
   - 0 issuewild "comodoca.com"
   - 0 issuewild "digicert.com; cansignhttpexchanges=yes"
+  - 0 issuewild "letsencrypt.org"
+  - 0 issuewild "pki.goog; cansignhttpexchanges=yes"
+  - 0 issuewild "ssl.com"
   spf: true
   dmarc: true
   dmarc_policy: reject
+  security_txt: false
+  security_txt_note: /.well-known/security.txt returns 404 on beacons.ai and
+    account.beacons.ai; no vulnerability disclosure program was found.

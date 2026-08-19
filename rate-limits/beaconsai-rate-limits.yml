@@ -1,0 +1,51 @@
+generated: '2026-08-13'
+method: probed
+source: >-
+  live unauthenticated requests to https://beacons.ai/api/v001/* on 2026-08-13
+docs: null
+limit_count: 0
+limit_count_note: >-
+  Beacons publishes NO rate limits. There is no developer portal, no API reference
+  and no help-centre article stating a limit, a window or a quota, so no numeric
+  limit can be recorded. What IS recorded below is the runtime behaviour observed
+  on live requests, which is the part an agent actually has to handle.
+limits: []
+observed_behavior:
+- surface: https://beacons.ai/api/v001/* (any path other than the MCP resource)
+  status: 429
+  body: 'Rate limit exceeded'
+  content_type: text/plain;charset=UTF-8
+  note: >-
+    Every unauthenticated request to an unmatched /api/v001/ path returns 429 on
+    the FIRST call from a cold IP — /api/v001/openapi.json, /api/v001/docs,
+    /api/v001/creator and a randomly generated nonexistent path all behaved
+    identically. This is a blanket catch-all, not an exhausted quota: the MCP
+    resource on the same prefix returned 401 (not 429) on the same connections.
+    The practical effect is that the /api/v001/ namespace is unenumerable and a
+    404 is indistinguishable from throttling.
+- surface: https://beacons.ai/api/v001/creator/mcp
+  status: 401
+  note: The MCP resource answers with an auth challenge rather than 429, so it is
+    exempt from the catch-all.
+response_headers:
+  ratelimit_standard: absent
+  x_ratelimit: absent
+  retry_after: absent
+  note: >-
+    The 429 response carries no RateLimit-*, no X-RateLimit-*, and no Retry-After.
+    A client is told to back off with no signal of how much or for how long, which
+    makes correct retry behaviour impossible to implement from the response alone.
+    Headers present on the 429 were limited to date, content-type, vary,
+    x-cloud-trace-context, server (cloudflare), via, cf-cache-status,
+    strict-transport-security, x-content-type-options and cf-ray.
+exhaustion_status: 429
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://beacons.ai/api/v001/openapi.json
+  http_status: 429
+- fetched: '2026-08-13'
+  url: https://beacons.ai/api/v001/zzz-nonexistent-path-9182
+  http_status: 429
+- fetched: '2026-08-13'
+  url: https://beacons.ai/api/v001/creator/mcp
+  http_status: 401

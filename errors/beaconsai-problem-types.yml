@@ -1,0 +1,49 @@
+generated: '2026-08-13'
+method: probed
+source: live responses observed on https://beacons.ai/api/v001/* on 2026-08-13
+format: plain-text
+rfc9457: false
+docs: null
+note: >-
+  Beacons publishes no error reference. There is no OpenAPI to derive 4xx/5xx
+  responses from, so this catalog contains ONLY responses actually observed on
+  live requests. It is not a complete error catalog and does not claim to be —
+  every authenticated error path is unobservable without a creator token.
+error_count: 2
+errors:
+- status: 401
+  reason: Unauthorized
+  surface: POST https://beacons.ai/api/v001/creator/mcp
+  content_type: text/plain;charset=UTF-8
+  body: '' # zero-length
+  headers:
+    www-authenticate: Bearer resource_metadata="https://beacons.ai/.well-known/oauth-protected-resource/api/v001/creator/mcp"
+  meaning: >-
+    The MCP resource requires an OAuth bearer token. The response body is empty;
+    the entire actionable payload is the WWW-Authenticate header, which points at
+    the RFC 9728 metadata document describing how to obtain one.
+  remediation: >-
+    Fetch the resource_metadata URL, follow authorization_servers to
+    https://beacons.ai/.well-known/oauth-authorization-server, register a client at
+    the registration_endpoint, and run the authorization_code + PKCE (S256) flow
+    for scope mcp:read.
+- status: 429
+  reason: Too Many Requests
+  surface: any unmatched path under https://beacons.ai/api/v001/
+  content_type: text/plain;charset=UTF-8
+  body: 'Rate limit exceeded'
+  headers:
+    retry-after: absent
+    ratelimit: absent
+  meaning: >-
+    A blanket throttle on the /api/v001/ namespace that fires on the first request
+    from a cold IP. It is returned for nonexistent paths as well as real ones, so
+    it cannot be read as "you sent too many requests" and it cannot be
+    distinguished from a 404.
+  remediation: >-
+    Nothing actionable is published. No Retry-After is sent, so a client must fall
+    back to blind exponential backoff.
+not_observed:
+- 4xx/5xx responses from any authenticated operation
+- any application/problem+json response
+- any structured error code vocabulary
