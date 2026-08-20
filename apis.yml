@@ -52,6 +52,19 @@ tags:
 - Creator Monetization
 - Influencer Software
 - MCP
+- agent-native
+tags_raw:
+- Company
+- Creator Economy
+- Link in Bio
+- Creator Website Builder
+- Creator Storefront
+- Media Kit
+- Email Marketing
+- Affiliate Marketing
+- Creator Monetization
+- Influencer Software
+- MCP
 - Agent Native
 apis:
 - name: Beacons Creator MCP Server
@@ -70,6 +83,12 @@ apis:
   humanURL: https://beacons.ai
   baseURL: https://beacons.ai/api/v001/creator/mcp
   tags:
+  - MCP
+  - agent-native
+  - Creator Economy
+  - Link in Bio
+  - Authentication
+  tags_raw:
   - mcp
   - agent-native
   - creator-economy
