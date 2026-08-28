@@ -15,6 +15,17 @@ description: >-
   server for creator data at https://beacons.ai/api/v001/creator/mcp, discoverable
   only through the RFC 8414 and RFC 9728 documents it serves at /.well-known/ —
   an agent surface that exists without any human-facing documentation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
