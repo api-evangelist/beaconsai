@@ -63,7 +63,7 @@ tags:
 - Creator Monetization
 - Influencer Software
 - MCP
-- Agent Native
+- agent-native
 tags_raw:
 - Company
 - Creator Economy
@@ -96,8 +96,8 @@ apis:
   tags:
   - MCP
   - agent-native
-  - creator-economy
-  - link-in-bio
+  - Creator Economy
+  - Link in Bio
   - Authentication
   tags_raw:
   - mcp
