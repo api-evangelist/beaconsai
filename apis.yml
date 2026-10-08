@@ -122,6 +122,8 @@ apis:
   - type: Conventions
     url: conventions/beaconsai-conventions.yml
 common:
+- type: RateLimits
+  url: rate-limits/beaconsai-rate-limits.yml
 - type: DomainSecurity
   url: security/beaconsai-domain-security.yml
 - type: Website
