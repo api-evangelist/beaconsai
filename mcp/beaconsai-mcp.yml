@@ -71,3 +71,18 @@ observations:
 - The path segment `creator` implies the server is scoped to a single creator account rather than to the
   platform.
 - The API is versioned in the path as `v001`.
+rfc9728:
+  endpoint: https://beacons.ai/api/v001/creator/mcp
+  metadata_url: https://beacons.ai/.well-known/oauth-protected-resource/api/v001/creator/mcp
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://beacons.ai/api/v001/creator/mcp
+    authorization_servers:
+    - https://beacons.ai
+    scopes_supported:
+    - mcp:read
+    bearer_methods_supported:
+    - header
