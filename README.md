@@ -64,6 +64,119 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Beacons.ai is a company surfaced as a portfolio company of a16z and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Beacons.ai is an all-in-one creator business platform for creators, talent managers, and brands. It combines link-in-bio pages, creator websites, media kits, digital storefronts, email marketing, affiliate monetization, analytics, and creator-brand collaboration tools into one integrated product. Beacons helps creators build an owned web presence, grow and own their audience, monetize through products, affiliate links, and sponsorships, and manage creator-business workflows from a single place, with dedicated tooling for talent managers and brands running creator partnerships. Beacons.ai was surfaced as a portfolio company of a16z and profiled in the API Evangelist network. Beacons publishes no developer portal, no API reference and no OpenAPI, but it does operate a live, OAuth-protected Model Context Protocol server for creator data at https://beacons.ai/api/v001/creator/mcp, discoverable only through the RFC 8414 and RFC 9728 documents it serves at /.well-known/ — an agent surface that exists without any human-facing documentation.
 
-Backed by: a16z
+**Areas:** Company · Creator Economy · Link in Bio · Creator Website Builder · Creator Storefront · Media Kit · Email Marketing · Affiliate Marketing · Creator Monetization · Influencer Software · MCP · Agent-Native
+
+## Beacons.ai on APIs.io
+
+Everything profiled for Beacons.ai is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/beaconsai/](https://apis.io/providers/beaconsai/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Beacons Creator MCP Server](https://apis.io/apis/beaconsai/beacons-creator-mcp-server/) — A live, first-party Model Context Protocol server exposing a Beacons creator's own data to an agent. Discovered through the RFC 9728 Protected Resource…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Beacons Creator MCP](https://apis.io/servers/beaconsai/beacons-creator-mcp/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Beaconsai Authentication](https://apis.io/security/beaconsai/beaconsai-authentication/)
+- [Beaconsai Domain Security](https://apis.io/security/beaconsai/beaconsai-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Beaconsai Scopes](https://apis.io/scopes/beaconsai/beaconsai-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Beaconsai Plans Pricing](https://apis.io/plans/beaconsai/beaconsai-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Beaconsai Rate Limits](https://apis.io/rate-limits/beaconsai/beaconsai-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://beacons.ai)
+- [Pricing](https://beacons.ai/i/pricing)
+- [Sign up](https://account.beacons.ai/signup)
+- [Support](https://help.beacons.ai/en)
+- [Changelog](https://beacons.ai/i/whats-new)
+- [Blog](https://beacons.ai/i/blog)
+- [Terms of service](https://beacons.ai/i/terms-and-conditions)
+- [Privacy policy](https://beacons.ai/i/beacons-privacy-policy)
+- [GitHub](https://github.com/BeaconsAI)
+- [Status](https://status.beacons.ai)
+
+## API Evangelist rating
+
+**Kin Score 36.1** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 76.3 |
+
+**Agent readiness 32.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/beaconsai/](https://apis.io/providers/beaconsai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Beacons.ai: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/beaconsai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
